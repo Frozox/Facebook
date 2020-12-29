@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69dfeb9f-a2ea-430a-bbfc-c875afe7d0b5" name="Default Changelist" comment="">
+    <list default="true" id="69dfeb9f-a2ea-430a-bbfc-c875afe7d0b5" name="Default Changelist" comment="ADD bootsrap, navbar, entité Amis et Commentaires">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201229105716.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/sln.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/logos/F_icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Amis.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Commentaires.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/AmisRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CommentairesRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/compte/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/footer.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/navbar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +28,14 @@
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -129,12 +151,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images/logos" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\logos" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\logos" />
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\icon" />
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\css" />
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -144,8 +179,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609233360333</updated>
-      <workItem from="1609233361999" duration="4084000" />
+      <workItem from="1609233361999" duration="22398000" />
     </task>
+    <task id="LOCAL-00001" summary="ADD acceuil, login/logout, register pages">
+      <created>1609237538522</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609237538522</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,5 +204,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ADD acceuil, login/logout, register pages" />
+    <MESSAGE value="ADD bootsrap, navbar, entité Amis et Commentaires" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD bootsrap, navbar, entité Amis et Commentaires" />
   </component>
 </project>

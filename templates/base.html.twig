@@ -4,9 +4,22 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <!--link rel="stylesheet" href="/css/sln.css"-->
+        <link rel="stylesheet" href="/css/stylesheet.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    <body class="dark-theme windows">
+        {% include('navbar.html.twig') %}
+        <!--form method="post">
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+        </form-->
         {% block body %}{% endblock %}
+        {% include('footer.html.twig') %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
