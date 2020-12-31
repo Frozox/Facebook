@@ -1,6 +1,6 @@
 <div id="content_wrapper">
     <header>
-        <section class="header__top">
+        <section class="visible-xs header__top affix-top" data-spy="affix" data-offset-top="44">
             <div class="container">
                 <div class="header__logo">
                     <a href="/">
@@ -15,10 +15,23 @@
             </div>
         </section>
 
+        <section class="hidden-xs header__top">
+            <div class="container">
+                <div class="header__logo">
+                    <a href="/">
+                        <img loading="eager" src="/images/logos/F_icon.svg" alt="Facebook">
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <section class="header__bottom affix-top" data-spy="affix" data-offset-top="90">
             <div class="container">
                 <nav id="navbar" class="header__nav">
                     <ul>
+                        <li class="hidden-xs header__logo--responsive">
+                            <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a>
+                        </li>
                         <li id="/" class="navbtn"><a href="/">Acceuil</a></li>
                         {% if app.user %}
                             <li id="/compte" class="navbtn"><a href="/compte">Mon compte</a></li>
