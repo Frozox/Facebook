@@ -3,19 +3,61 @@
 {% block title %}Facebook{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <main class="col-sm-8">
+                <section>
+                    <div class="box box--shadow">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="m-b-5">Enregistrement</h1>
+                                {% for flashError in app.flashes('verify_email_error') %}
+                                    <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                                {% endfor %}
+                                {{ form_start(registrationForm) }}
 
-    <h1>Register</h1>
+                                {{ form_label(registrationForm.username, 'Nom') }}
+                                {% if form_errors(registrationForm.username) %}
+                                    <div class="alert alert-danger" role="alert">{{ form_errors(registrationForm.username) }}</div>
+                                {% endif %}
+                                {{ form_widget(registrationForm.username, {'attr': {'class': 'm-b-5 mousetrap form-control'}}) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                                {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+                                {% if form_errors(registrationForm.plainPassword) %}
+                                    <div class="alert alert-danger" role="alert">{{ form_errors(registrationForm.plainPassword) }}</div>
+                                {% endif %}
+                                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'm-b-10 mousetrap form-control'}}) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                                {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mb-3'}}) }}
+                                {{ form_label(registrationForm.agreeTerms, 'Accepter les termes') }}
+
+                                <button type="submit" class="btn btn-outline btn-block m-b-15">S'enregistrer</button>
+                                <a href="/login">
+                                    <div class="text-bold">
+                                        Se connecter
+                                    </div>
+                                </a>
+                                {{ form_end(registrationForm) }}
+
+                                <!--label for="inputUsername">Nom</label>
+                                <input type="text" name="username" id="inputUsername" class="m-b-5 mousetrap form-control" required autofocus>
+                                <label for="inputPassword">Mot de passe</label>
+                                <input type="password" name="password" id="inputPassword" class="mousetrap form-control" required-->
+                                <!--button class="btn btn-outline" type="submit">
+                                    Connexion
+                                </button>
+
+                                <a href="/register">
+                                    <div class="btn btn-outline">
+                                        S'enregistrer
+                                    </div>
+                                </a-->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
 {% endblock %}

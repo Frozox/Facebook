@@ -4477,9 +4477,9 @@ img {
 .avatar {
     border: 1px solid var(--gray-lighter);
     border-radius: 50%;
-    height: 24px;
+    height: 30px;
     margin: 0;
-    width: 24px
+    width: 30px
 }
 
 .avatar--square {
@@ -4667,7 +4667,7 @@ pre select {
 }
 
 .btn,
-.btn:focus,
+.btn:focus
 .btn:hover {
     background: var(--accent-color);
     border: 0;
@@ -4713,7 +4713,8 @@ pre select {
 .btn-block:active,
 .btn-block:focus,
 .btn-block:hover {
-    display: block
+    display: block;
+    width: 100%
 }
 
 .btn--danger,
@@ -4725,6 +4726,17 @@ pre select {
 
 .btn--danger:active {
     box-shadow: 0 1px #900
+}
+
+.btn--succes,
+.btn--succes:focus,
+.btn--succes:hover {
+    background-color: #22b800;
+    box-shadow: 0 3px #229d00
+}
+
+.btn--succes:active {
+    box-shadow: 0 1px #229d00
 }
 
 .btn--large,
@@ -5427,7 +5439,7 @@ section.visible-xs.header__top.affix{
 
 .header__nav a {
     color: #d9d9d9;
-    display: block;
+    display: inline;
     height: 40px;
     line-height: 40px
 }

@@ -14,7 +14,7 @@ class CompteController extends AbstractController
     public function index(): Response
     {
         if (!$this->getUser()) {
-            return $this->redirectToRoute('acceuil');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('compte/index.html.twig', [

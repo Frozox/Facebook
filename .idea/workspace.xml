@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69dfeb9f-a2ea-430a-bbfc-c875afe7d0b5" name="Default Changelist" comment="ADD responsive design, dark/light mod">
+    <list default="true" id="69dfeb9f-a2ea-430a-bbfc-c875afe7d0b5" name="Default Changelist" comment="FIX responsive design on navbar">
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/footerontop.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/runtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/selectedCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/selectedCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/themeSwitcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/themeSwitcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AcceuilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AcceuilController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CompteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/AuthentificatorAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/AuthentificatorAuthenticator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/acceuil/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/acceuil/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,13 +157,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images/logos" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public" />
       <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\logos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -170,7 +183,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609233360333</updated>
-      <workItem from="1609233361999" duration="61462000" />
+      <workItem from="1609233361999" duration="92914000" />
     </task>
     <task id="LOCAL-00001" summary="ADD acceuil, login/logout, register pages">
       <created>1609237538522</created>
@@ -193,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609337850453</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="FIX responsive design on navbar">
+      <created>1609412901107</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1609412901107</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +234,7 @@
     <MESSAGE value="ADD acceuil, login/logout, register pages" />
     <MESSAGE value="ADD bootsrap, navbar, entité Amis et Commentaires" />
     <MESSAGE value="ADD responsive design, dark/light mod" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD responsive design, dark/light mod" />
+    <MESSAGE value="FIX responsive design on navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIX responsive design on navbar" />
   </component>
 </project>

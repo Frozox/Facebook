@@ -7,7 +7,11 @@
                         <img loading="eager" src="/images/logos/F_icon.svg" alt="Facebook">
                     </a>
                 </div>
-                <div class="visible-xs">
+                {% if app.user %}
+                    <div class="visible-xs">
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
                     <button class="header__toggle__menu" type="button" name="toggle" aria-label="Toggle menu" title="Toggle menu">
                         <i class="icon icon--large icon--white"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1664 1344v128q0 26-19 45t-45 19H192q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19H192q-26 0-45-19t-19-45V832q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19H192q-26 0-45-19t-19-45V320q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path></svg></i>
                     </button>
@@ -25,24 +29,31 @@
             </div>
         </section>
 
+        {% if app.user %}
         <section class="header__bottom affix-top" data-spy="affix" data-offset-top="90">
             <div class="container">
                 <nav id="navbar" class="header__nav">
-                    <ul>
+                    <ul class="hidden-xs">
                         <li class="hidden-xs header__logo--responsive">
-                            <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a>
-                        </li>
+                        <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a></li>
+                        <li id="/compte" class="navbtn"> <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar"><a href="/compte"> {{ app.user.username }}</a></li>
                         <li id="/" class="navbtn"><a href="/">Acceuil</a></li>
-                        {% if app.user %}
-                            <li id="/compte" class="navbtn"><a href="/compte">Mon compte</a></li>
-                            <li id="/logout" class="navbtn header__logout"><a href="/logout">Logout</a></li>
-                        {% else %}
-                            <li id="/register" class="navbtn"><a href="/register">Register</a></li>
-                            <li id="/login" class="navbtn header__login"><a href="/login">Login</a></li>
-                        {% endif %}
+                        <li id="/amis" class="navbtn"><a href="/amis">Mes Amis</a></li>
+                        <li id="/amis" class="navbtn"><a href="/amis">Ajouter un ami</a></li>
+                        <li id="/logout" class="navbtn header__logout"><a href="/logout">Logout</a></li>
+                    </ul>
+                    <ul class="visible-xs">
+                        <li class="hidden-xs header__logo--responsive">
+                        <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a></li>
+                        <a href="/compte"><li id="/compte" class="navbtn"> <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
+                        <a href="/"><li id="/" class="navbtn">Acceuil</li></a>
+                        <a href="/amis"><li id="/amis" class="navbtn">Mes Amis</li></a>
+                        <a href="/amis"><li id="/amis" class="navbtn">Ajouter un ami</li></a>
+                        <a href="/logout"><li id="/logout" class="navbtn header__logout">Logout</li></a>
                     </ul>
                 </nav>
             </div>
         </section>
+        {% endif %}
     </header>
 </div>
