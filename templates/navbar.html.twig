@@ -36,7 +36,12 @@
                     <ul class="hidden-xs">
                         <li class="hidden-xs header__logo--responsive">
                         <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a></li>
-                        <li id="/compte" class="navbtn"> <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar"><a href="/compte"> {{ app.user.username }}</a></li>
+                        <li id="/profile" class="navbtn">
+                        {% if app.user.avatar is null %}
+                            <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="avatar"><a href="/profile"> {{ app.user.username }}</a></li>
+                        {% else %}
+                            <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"><a href="/profile"> {{ app.user.username }}</a></li>
+                        {% endif %}
                         <li id="/" class="navbtn"><a href="/">Acceuil</a></li>
                         <li id="/amis" class="navbtn"><a href="/amis">Mes Amis</a></li>
                         <li id="/amis" class="navbtn"><a href="/amis">Ajouter un ami</a></li>
@@ -45,7 +50,12 @@
                     <ul class="visible-xs">
                         <li class="hidden-xs header__logo--responsive">
                         <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a></li>
-                        <a href="/compte"><li id="/compte" class="navbtn"> <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
+                        <a href="/profile"><li id="profile" class="navbtn">
+                        {% if app.user.avatar is null %}
+                            <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
+                        {% else %}
+                            <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
+                        {% endif %}
                         <a href="/"><li id="/" class="navbtn">Acceuil</li></a>
                         <a href="/amis"><li id="/amis" class="navbtn">Mes Amis</li></a>
                         <a href="/amis"><li id="/amis" class="navbtn">Ajouter un ami</li></a>

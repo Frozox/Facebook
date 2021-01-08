@@ -35,12 +35,22 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'max' => 13,
+                    ]),
+                ],
+            ])
+            ->add('plainPasswordConfirmation', PasswordType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter the confirmation password',
                     ]),
                     new Length([
                         'min' => 6,

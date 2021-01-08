@@ -15,6 +15,7 @@
                                 {% for flashError in app.flashes('verify_email_error') %}
                                     <div class="alert alert-danger" role="alert">{{ flashError }}</div>
                                 {% endfor %}
+
                                 {{ form_start(registrationForm) }}
 
                                 {{ form_label(registrationForm.username, 'Nom') }}
@@ -29,6 +30,12 @@
                                 {% endif %}
                                 {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'm-b-10 mousetrap form-control'}}) }}
 
+                                {{ form_label(registrationForm.plainPasswordConfirmation, 'Mot de passe de confirmation') }}
+                                {% if form_errors(registrationForm.plainPasswordConfirmation) %}
+                                    <div class="alert alert-danger" role="alert">{{ form_errors(registrationForm.plainPasswordConfirmation) }}</div>
+                                {% endif %}
+                                {{ form_widget(registrationForm.plainPasswordConfirmation, {'attr': {'class': 'm-b-10 mousetrap form-control'}}) }}
+
                                 {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mb-3'}}) }}
                                 {{ form_label(registrationForm.agreeTerms, 'Accepter les termes') }}
 
@@ -38,21 +45,8 @@
                                         Se connecter
                                     </div>
                                 </a>
+
                                 {{ form_end(registrationForm) }}
-
-                                <!--label for="inputUsername">Nom</label>
-                                <input type="text" name="username" id="inputUsername" class="m-b-5 mousetrap form-control" required autofocus>
-                                <label for="inputPassword">Mot de passe</label>
-                                <input type="password" name="password" id="inputPassword" class="mousetrap form-control" required-->
-                                <!--button class="btn btn-outline" type="submit">
-                                    Connexion
-                                </button>
-
-                                <a href="/register">
-                                    <div class="btn btn-outline">
-                                        S'enregistrer
-                                    </div>
-                                </a-->
                             </div>
                         </div>
                     </div>

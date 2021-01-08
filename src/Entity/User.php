@@ -60,6 +60,9 @@ class User implements UserInterface
         $this->amis = new ArrayCollection();
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -133,6 +136,9 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getAvatar(): ?string
     {
         return $this->avatar;
@@ -141,6 +147,13 @@ class User implements UserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function removeAvatar(): self
+    {
+        $this->avatar = null;
 
         return $this;
     }
