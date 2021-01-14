@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,14 +51,20 @@ class User implements UserInterface
     private $commentaires;
 
     /**
-     * @ORM\OneToMany(targetEntity=Amis::class, mappedBy="id_demandeur", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Amis::class, mappedBy="user", orphanRemoval=true)
      */
-    private $amis;
+    private $mesAmis;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Amis::class, mappedBy="friend", orphanRemoval=true)
+     */
+    private $amisAvecMoi;
 
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
-        $this->amis = new ArrayCollection();
+        $this->mesAmis = new ArrayCollection();
+        $this->amisAvecMoi = new ArrayCollection();
     }
 
     /**
@@ -188,15 +195,41 @@ class User implements UserInterface
         return $this;
     }
 
+    ///**
+    // * @return Collection|User[]
+    // */
+    /*public function getPendingAmis(): Collection{
+        return new ArrayCollection();
+    }*/
+
     /**
-     * @return Collection|Amis[]
+     * @return Collection|User[]
      */
     public function getAmis(): Collection
     {
-        return $this->amis;
+        $amis = new ArrayCollection();
+
+        foreach ($this->mesAmis as $ami){
+            $amis[] = $ami->getFriend();
+        }
+        foreach ($this->amisAvecMoi as $ami){
+            $amis[] = $ami->getUser();
+        }
+
+        $orderBy = (Criteria::create())->orderBy([
+            'username' => Criteria::ASC,
+        ]);
+
+        return $amis->matching($orderBy);
     }
 
-    public function addAmi(Amis $ami): self
+    ///**
+    // * @return Collection|User[]
+    // */
+    /*public function getPendingAmis(): Collection{
+    }*/
+
+    /*public function addAmi(Amis $ami): self
     {
         if (!$this->amis->contains($ami)) {
             $this->amis[] = $ami;
@@ -216,5 +249,5 @@ class User implements UserInterface
         }
 
         return $this;
-    }
+    }*/
 }

@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69dfeb9f-a2ea-430a-bbfc-c875afe7d0b5" name="Default Changelist" comment="FIX login/register css, footer on top">
-      <change afterPath="$PROJECT_DIR$/public/css/dropavatar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar/default_avatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/imgUpload.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/dropavatar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/ProfileType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/facebook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/facebook.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CompteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Amis.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Amis.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/AuthentificatorAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/AuthentificatorAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/compte/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/compte/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +171,10 @@
       <updated>1609233360333</updated>
       <workItem from="1609233361999" duration="134150000" />
       <workItem from="1610100967357" duration="10650000" />
-      <workItem from="1610117702257" duration="2016000" />
+      <workItem from="1610117702257" duration="2180000" />
+      <workItem from="1610525709256" duration="4015000" />
+      <workItem from="1610613508592" duration="141000" />
+      <workItem from="1610613955621" duration="13972000" />
     </task>
     <task id="LOCAL-00001" summary="ADD acceuil, login/logout, register pages">
       <created>1609237538522</created>
@@ -223,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609942495657</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ADD profile/avatar form">
+      <created>1610119857907</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610119857907</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +242,7 @@
     <MESSAGE value="ADD responsive design, dark/light mod" />
     <MESSAGE value="FIX responsive design on navbar" />
     <MESSAGE value="FIX login/register css, footer on top" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIX login/register css, footer on top" />
+    <MESSAGE value="ADD profile/avatar form" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD profile/avatar form" />
   </component>
 </project>

@@ -10,67 +10,76 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Amis
 {
+    const STATUS_PENDING = 'STATUS_PENDING';
+    const STATUS_FRIEND = 'STATUS_FRIEND';
+    const STATUS_BLOCKED = 'STATUS_BLOCKED';
+    const DEFAULT_STATUS = [self::STATUS_PENDING];
+
     /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="mesAmis")
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="amis")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="amisAvecMoi")
+     * @ORM\Id
      */
-    private $id_demandeur;
+    private $friend;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="amis")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string")
      */
-    private $id_receveur;
+    private $status;
 
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $etat;
 
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->status = self::DEFAULT_STATUS;
     }
 
-    public function getIdDemandeur(): ?user
+    public function getUser(): ?user
     {
-        return $this->id_demandeur;
+        return $this->user;
     }
 
-    public function setIdDemandeur(?user $id_demandeur): self
+    public function getFriend(): ?user
     {
-        $this->id_demandeur = $id_demandeur;
+        return $this->friend;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
 
-    public function getIdReceveur(): ?user
+    public function addFriend(User $user, User $friend): self
     {
-        return $this->id_receveur;
-    }
 
-    public function setIdReceveur(?user $id_receveur): self
-    {
-        $this->id_receveur = $id_receveur;
+        $userID = $user->getId();
+        $friendID = $friend->getId();
 
-        return $this;
-    }
 
-    public function getEtat(): ?int
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(int $etat): self
-    {
-        $this->etat = $etat;
+        switch ($userID)
+        {
+            case $userID > $friendID:
+                $this->setUser($friend);
+                $this->setFriend($user);
+                break;
+            case $userID < $friendID:
+                $this->setUser($user);
+                $this->setFriend($friend);
+                break;
+            case $userID ===  $friendID:
+                break;
+        }
 
         return $this;
     }
