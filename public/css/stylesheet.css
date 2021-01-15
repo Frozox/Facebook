@@ -2881,7 +2881,7 @@ textarea.input-lg {
 }
 
 .fade {
-    opacity: 0;
+    opacity: 1;
     -webkit-transition: opacity .15s linear;
     -o-transition: opacity .15s linear;
     transition: opacity .15s linear
@@ -3721,6 +3721,7 @@ h6 code {
     --header-top-background: #1e2125;
     --header-bottom-background: #2e3136;
     --highlight-color: #ff3;
+    --warning-color: #ffae00;
     --error-color: #d73a49;
     --success-color: #28a745;
     --versionadded-background-color: rgba(67, 76, 103, 0.8);
@@ -3904,6 +3905,7 @@ h6 code {
     --header-top-background: #f0f0f0;
     --header-bottom-background: #f9f9f9;
     --highlight-color: #ff3;
+    --warning-color: #ffae00;
     --error-color: #d73a49;
     --success-color: #28a745;
     --versionadded-background-color: rgba(0, 136, 204, 0.05);
@@ -4728,11 +4730,12 @@ pre select {
     box-shadow: 0 1px #900
 }
 
-.btn--remove {
+.btn--submit,
+.btn--warning,
+.btn--remove,
+.btn--accept{
     background: 0 0;
-    border: 2px solid var(--error-color);
     border-radius: 4px;
-    color: var(--error-color);
     display: inline-block;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
@@ -4746,7 +4749,30 @@ pre select {
     transition: opacity .2s ease-in-out 0s;
 }
 
-.btn--remove:hover {
+.btn--submit{
+    border: 2px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.btn--warning{
+    border: 2px solid var(--warning-color);
+    color: var(--warning-color);
+}
+
+.btn--remove{
+    border: 2px solid var(--error-color);
+    color: var(--error-color);
+}
+
+.btn--accept{
+    border: 2px solid var(--accent-color-dark);
+    color: var(--accent-color-dark);
+}
+
+.btn--submit:hover,
+.btn--warning:hover,
+.btn--remove:hover,
+.btn--accept:hover{
     opacity: .8;
 }
 
@@ -5414,7 +5440,7 @@ section.visible-xs.header__top.affix{
     box-shadow: 0 0 20px 0 rgba(46, 40, 64, .5);
     width: 100%;
     top: 0px;
-    z-index: 9000
+    z-index: 1000
 }
 
 .header__bottom.affix .header__logo--responsive {
@@ -5429,7 +5455,7 @@ section.visible-xs.header__top.affix{
     width: 100%;
     margin-left: -15px;
     top: 44px;
-    z-index: 9000
+    z-index: 1000
 }
 
 .header__nav ul {
@@ -6187,4 +6213,12 @@ footer .promos a:hover {
     max-width: 80px;
     max-height: 80px;
     vertical-align: baseline
+}
+
+.scrollbar-y{
+    height: 400px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--footer-background-color) var(--page-background);
+    padding: 10px;
+    overflow-y: scroll;
 }

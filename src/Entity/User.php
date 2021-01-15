@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -195,17 +196,13 @@ class User implements UserInterface
         return $this;
     }
 
-    ///**
-    // * @return Collection|User[]
-    // */
-    /*public function getPendingAmis(): Collection{
-        return new ArrayCollection();
-    }*/
+    public function getAmisNumber(): int{
+        $n1 = $this->mesAmis->count();
+        $n2 = $this->amisAvecMoi->count();
+        return $n1 + $n2;
+    }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getAmis(): Collection
+    public function getToutLesAmis(): Collection
     {
         $amis = new ArrayCollection();
 
@@ -217,17 +214,60 @@ class User implements UserInterface
         }
 
         $orderBy = (Criteria::create())->orderBy([
+            'id' => Criteria::ASC,
+        ]);
+
+        return $amis->matching($orderBy);
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getAmis(String $status): Collection
+    {
+        $amis = new ArrayCollection();
+
+        foreach ($this->mesAmis as $ami){
+            if($ami->getStatus() == $status){
+                $amis[] = $ami->getFriend();
+            }
+        }
+        foreach ($this->amisAvecMoi as $ami){
+            if($ami->getStatus() == $status){
+                $amis[] = $ami->getUser();
+            }
+        }
+
+        $orderBy = (Criteria::create())->orderBy([
             'username' => Criteria::ASC,
         ]);
 
         return $amis->matching($orderBy);
     }
 
-    ///**
-    // * @return Collection|User[]
-    // */
-    /*public function getPendingAmis(): Collection{
-    }*/
+    /**
+     * @return bool
+     */
+    public function estAmiDe(int $id): bool{
+        foreach ($this->getToutLesAmis() as $ami){
+            if($ami->getId() == $id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function aDemanderEnAmi(int $id): bool{
+        foreach ($this->mesAmis as $ami){
+            if($ami->getFriend()->getId() == $id){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /*public function addAmi(Amis $ami): self
     {
