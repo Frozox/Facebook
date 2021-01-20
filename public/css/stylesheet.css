@@ -6222,3 +6222,14 @@ footer .promos a:hover {
     padding: 10px;
     overflow-y: scroll;
 }
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    background: var(--page-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--footer-background-color);
+    -webkit-border-radius: 1ex;
+}

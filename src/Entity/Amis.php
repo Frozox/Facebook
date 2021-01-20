@@ -4,16 +4,17 @@ namespace App\Entity;
 
 use App\Repository\AmisRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 
 /**
  * @ORM\Entity(repositoryClass=AmisRepository::class)
+ * @ORM\Table(name="`amis`")
  */
 class Amis
 {
     const STATUS_PENDING = 'STATUS_PENDING';
     const STATUS_FRIEND = 'STATUS_FRIEND';
     const STATUS_BLOCKED = 'STATUS_BLOCKED';
-    const DEFAULT_STATUS = [self::STATUS_PENDING];
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="mesAmis")
@@ -33,9 +34,16 @@ class Amis
     private $status;
 
 
-    public function __construct()
+    public function __construct(User $user, User $friend, Bool $blocked = false)
     {
-        $this->status = self::DEFAULT_STATUS;
+        $this->user = $user;
+        $this->friend = $friend;
+        if($blocked){
+            $this->status = self::STATUS_BLOCKED;
+        }
+        else{
+            $this->status = self::STATUS_PENDING;
+        }
     }
 
     public function getUser(): ?user
@@ -53,33 +61,9 @@ class Amis
         return $this->status;
     }
 
-    public function setStatus(int $status): self
+    public function setStatus(String $status): self
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function addFriend(User $user, User $friend): self
-    {
-
-        $userID = $user->getId();
-        $friendID = $friend->getId();
-
-
-        switch ($userID)
-        {
-            case $userID > $friendID:
-                $this->setUser($friend);
-                $this->setFriend($user);
-                break;
-            case $userID < $friendID:
-                $this->setUser($user);
-                $this->setFriend($friend);
-                break;
-            case $userID ===  $friendID:
-                break;
-        }
 
         return $this;
     }

@@ -196,12 +196,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAmisNumber(): int{
-        $n1 = $this->mesAmis->count();
-        $n2 = $this->amisAvecMoi->count();
-        return $n1 + $n2;
-    }
-
     public function getToutLesAmis(): Collection
     {
         $amis = new ArrayCollection();
@@ -246,15 +240,55 @@ class User implements UserInterface
     }
 
     /**
-     * @return bool
+     * @return Amis
      */
-    public function estAmiDe(int $id): bool{
-        foreach ($this->getToutLesAmis() as $ami){
-            if($ami->getId() == $id){
+    public function getAmiById(int $id): ?Amis
+    {
+        foreach ($this->mesAmis as $ami){
+            if($ami->getFriend()->getId() == $id){
+                return $ami;
+            }
+        }
+        foreach ($this->amisAvecMoi as $ami){
+            if($ami->getUser()->getId() == $id){
+                return $ami;
+            }
+        }
+        return null;
+    }
+
+    /**
+    * @return bool
+    */
+    public function estEnRelationAvec(String $status, int $id): bool{
+        foreach ($this->mesAmis as $ami){
+            if($ami->getFriend()->GetId() == $id && $ami->getStatus() == $status){
+                return true;
+            }
+        }
+        foreach ($this->amisAvecMoi as $ami){
+            if($ami->getUser()->GetId() == $id && $ami->getStatus() == $status){
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function AucuneRelationAvec(int $id): bool{
+        foreach ($this->mesAmis as $ami){
+            if($ami->getFriend()->GetId() == $id){
+                return false;
+            }
+        }
+        foreach ($this->amisAvecMoi as $ami){
+            if($ami->getUser()->GetId() == $id){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -269,23 +303,42 @@ class User implements UserInterface
         return false;
     }
 
+    /**
+     * @return int
+     */
+    public function getInviteNumber(): int{
+        $nb = 0;
+
+        foreach ($this->amisAvecMoi as $ami){
+            if($ami->getStatus() == 'STATUS_PENDING'){
+                $nb += 1;
+            }
+        }
+
+        return $nb;
+    }
+
+    public function removeAmi(int $id): self
+    {
+        $ami = $this->getAmiById($id);
+
+        $this->mesAmis->removeElement($ami);
+        $this->amisAvecMoi->removeElement($ami);
+
+        return $this;
+    }
+
+    public function getAmisNumber(): int{
+        $n1 = $this->mesAmis->count();
+        $n2 = $this->amisAvecMoi->count();
+        return $n1 + $n2;
+    }
+
     /*public function addAmi(Amis $ami): self
     {
         if (!$this->amis->contains($ami)) {
             $this->amis[] = $ami;
             $ami->setIdDemandeur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAmi(Amis $ami): self
-    {
-        if ($this->amis->removeElement($ami)) {
-            // set the owning side to null (unless already changed)
-            if ($ami->getIdDemandeur() === $this) {
-                $ami->setIdDemandeur(null);
-            }
         }
 
         return $this;

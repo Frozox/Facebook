@@ -42,9 +42,13 @@
                         {% else %}
                             <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"><a href="/profile"> {{ app.user.username }}</a></li>
                         {% endif %}
-                        <li id="/" class="navbtn"><a href="/">Acceuil</a></li>
-                        <li id="/amis" class="navbtn"><a href="/amis">Mes Amis</a></li>
-                        <li id="/amis" class="navbtn"><a href="/amis">Ajouter un ami</a></li>
+                        <li id="/" class="navbtn"><a href="/">Mon Mur</a></li>
+                        <li id="/" class="navbtn"><a href="/">Actualités</a></li>
+                        {% if app.user.getInviteNumber() > 0 %}
+                            <li id="/amis" class="navbtn"><a href="/amis">Mes Amis <span class="badge badge--danger">{{ app.user.getInviteNumber() }}</span></a></li>
+                        {% else %}
+                            <li id="/amis" class="navbtn"><a href="/amis">Mes Amis</a></li>
+                        {% endif %}
                         <li id="/logout" class="navbtn header__logout"><a href="/logout">Logout</a></li>
                     </ul>
                     <ul class="visible-xs">
@@ -56,9 +60,13 @@
                         {% else %}
                             <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
                         {% endif %}
-                        <a href="/"><li id="/" class="navbtn">Acceuil</li></a>
-                        <a href="/amis"><li id="/amis" class="navbtn">Mes Amis</li></a>
-                        <a href="/amis"><li id="/amis" class="navbtn">Ajouter un ami</li></a>
+                        <a href="/"><li id="/" class="navbtn">Mon Mur</li></a>
+                        <a href="/"><li id="/" class="navbtn">Actualités</li></a>
+                        {% if app.user.getInviteNumber() > 0 %}
+                            <a href="/amis"><li id="/amis" class="navbtn">Mes Amis <span class="badge badge--danger">{{ app.user.getInviteNumber() }}</span></li></a>
+                        {% else %}
+                            <a href="/amis"><li id="/amis" class="navbtn">Mes Amis</li></a>
+                        {% endif %}
                         <a href="/logout"><li id="/logout" class="navbtn header__logout">Logout</li></a>
                     </ul>
                 </nav>

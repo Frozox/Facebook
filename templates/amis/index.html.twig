@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facebook{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box box--shadow">
+                    <input class="mousetrap form-control" type="text" id="search-user" placeholder="Ajouter un ami"/>
+                    <div id="invite-accordion">
+                        <div id="result-search"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="box box--shadow">
+                    <h1 class="m-b-5 text-center">Mes Amis</h1>
+                    <section class="scrollbar-y">
+                        {% if app.user.getAmis('STATUS_FRIEND').count() <= 0 %}
+                            <div class="box" style="background-color: var(--gray-lightest)">
+                                <h6 class="text-center">Vous ne disposez d'aucun ami pour le moment 😢<br>Sortez prendre l'air, découvrez le monde</h6>
+                            </div>
+                        {% else %}
+                            <div id="friend-accordion">
+                            {% for user in app.user.getAmis('STATUS_FRIEND') %}
+                                <div id="friend-heading-{{ user.getId() }}">
+                                    <button class="btn-outline btn-block box box--small collapsed" type="button" data-toggle="collapse" data-target="#friend-collapse-{{ user.getId() }}" aria-expanded="false" style="background-color: var(--gray-lightest)">
+                                        {% if user.avatar is null %}
+                                            <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                        {% else %}
+                                            <img src="{{ user.getAvatar() }}" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                        {% endif %}
+                                        <span class="text-large text-bold">{{ user.getUsername() }}</span>
+                                    </button>
+                                </div>
+                                <form method="get">
+                                    <div id="friend-collapse-{{ user.getId() }}" class="collapse" aria-labelledby="friend-heading-{{ user.getId() }}" data-parent="#friend-accordion">
+                                        <button class="btn-block btn--accept" type="submit" name="profile" value="{{ user.getId() }}">Consulter le profile</button>
+                                        <div class="btn-block btn--remove"  data-toggle="modal" data-target="#friend-modal-remove-{{ user.getId() }}">Supprimer des amis</div>
+                                        <div class="btn-block btn--warning" data-toggle="modal" data-target="#friend-modal-blocked-{{ user.getId() }}">Bloquer</div>
+                                        <div class="modal" id="friend-modal-remove-{{ user.getId() }}" tabindex="-10" role="dialog" data-backdrop="static" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content box--white">
+                                                    <div class="modal-body text-center text-bold alert-danger">Vous êtes sur le point de supprimer {{ user.getUsername() }} de vos amis.</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn-block btn--remove" type="submit" name="remove" value="{{ user.getId() }}">Supprimer {{ user.getUsername() }} de mes amis</button>
+                                                        <div class="btn-block btn--accept" data-dismiss="modal">Annuler</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal" id="friend-modal-blocked-{{ user.getId() }}" tabindex="-10" role="dialog" data-backdrop="static" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content box--white">
+                                                    <div class="modal-body text-center text-bold alert-danger">Vous êtes sur le point de bloquer {{ user.getUsername }}. Vous ne pourrez plus communiquer avec ni l'inviter de nouveau. cette action est irreversible.</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn-block btn--remove" type="submit" name="blocked" value="{{ user.getId() }}">Je suis sûr de vouloir bloquer {{ user.getUsername() }}</button>
+                                                        <div class="btn-block btn--accept" data-dismiss="modal">Annuler</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="box box--shadow">
+                    <h1 class="m-b-5 text-center">En attente</h1>
+                    <section class="scrollbar-y">
+                        {% if app.user.getAmis('STATUS_PENDING').count() <= 0 %}
+                            <div class="box" style="background-color: var(--gray-lightest)">
+                                <h6 class="text-center">Vous n'avez pour le moment aucune nouvelle demande d'amitié</h6>
+                            </div>
+                        {% else %}
+                            <div id="pending-accordion">
+                                {% for user in app.user.getAmis('STATUS_PENDING') %}
+                                    <div id="pending-heading-{{ user.getId() }}">
+                                        <button class="btn-outline btn-block box box--small collapsed" type="button" data-toggle="collapse" data-target="#pending-collapse-{{ user.getId() }}" aria-expanded="false" style="background-color: var(--gray-lightest)">
+                                            {% if user.avatar is null %}
+                                                <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                            {% else %}
+                                                <img src="{{ user.getAvatar() }}" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                            {% endif %}
+                                            <span class="text-large text-bold">{{ user.getUsername() }}</span>
+                                        </button>
+                                    </div>
+                                    <form method="get">
+                                        <div id="pending-collapse-{{ user.getId() }}" class="collapse" aria-labelledby="pending-heading-{{ user.getId() }}" data-parent="#pending-accordion">
+                                            {% if app.user.aDemanderEnAmi(user.getId()) %}
+                                                <button class="btn-block btn--warning" type="submit" name="cancel" value="{{ user.getId() }}">Annuler la demande</button>
+                                            {% else %}
+                                                <button class="btn-block btn--submit" type="submit" name="accept" value="{{ user.getId() }}">Accepter</button>
+                                                <button class="btn-block btn--remove" type="submit" name="refuse" value="{{ user.getId() }}">Refuser</button>
+                                                <div class="btn-block btn--warning" data-toggle="modal" data-target="#pending-modal-blocked-{{ user.getId() }}">Bloquer</div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="modal" id="pending-modal-blocked-{{ user.getId() }}" tabindex="-10" role="dialog" data-backdrop="static" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content box--white">
+                                                    <div class="modal-body text-center text-bold alert-danger">
+                                                        Vous êtes sur le point de bloquer {{ user.getUsername }}.
+                                                        Vous ne pourrez plus communiquer avec ni l'inviter de nouveau.
+                                                        cette action est irreversible.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn-block btn--remove" type="submit" name="blocked" value="{{ user.getId() }}">Je suis sûr de vouloir bloquer {{ user.getUsername() }}</button>
+                                                        <div class="btn-block btn--accept" data-dismiss="modal">Annuler</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="box box--shadow">
+                    <h1 class="m-b-5 text-center">Bloqués</h1>
+                    <section class="scrollbar-y">
+                        {% if app.user.getAmis('STATUS_BLOCKED').count() <= 0 %}
+                            <div class="box" style="background-color: var(--gray-lightest)">
+                                <h6 class="text-center">Personne ne semble vous embêter pour le moment 👍</h6>
+                            </div>
+                        {% else %}
+                            <div id="blocked-accordion">
+                                {% for user in app.user.getAmis('STATUS_BLOCKED') %}
+                                    <div id="blocked-heading-{{ user.getId() }}">
+                                        <button class="btn-outline btn-block box box--small collapsed" type="button" data-toggle="modal" data-target="#blocked-modal-{{ user.getId() }}" style="background-color: var(--gray-lightest)">
+                                            {% if user.avatar is null %}
+                                                <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                            {% else %}
+                                                <img src="{{ user.getAvatar() }}" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                            {% endif %}
+                                            <span class="text-large text-bold">{{ user.getUsername() }}</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal" id="blocked-modal-{{ user.getId() }}" tabindex="-10" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content box--white">
+                                                <div class="modal-body text-center text-bold alert-info">
+                                                    Il semblerait que {{ user.getUsername() }} soit bloqué 😢
+                                                    Contactez le support pour plus d'informations.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn-block btn--accept" type="button" data-dismiss="modal">D'accord</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/ajaxSearchBar.js') }}"></script>
+{% endblock %}
