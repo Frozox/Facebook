@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CommentairesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
  * @ORM\Entity(repositoryClass=CommentairesRepository::class)
@@ -21,16 +23,16 @@ class Commentaires
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_user;
+    private $wallUser;
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_com_author;
+    private $comUser;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=25)
      */
     private $title;
 
@@ -45,37 +47,31 @@ class Commentaires
     private $image;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date_crea;
+
+    public function __construct(User $wallUser, User $comUser, String $title, String $content){
+        $this->wallUser = $wallUser;
+        $this->comUser = $comUser;
+        $this->title = $title;
+        $this->content = $content;
+        $this->date_crea = \DateTime::createFromFormat('d-m-Y H:i:s', date('d-m-Y H:i:s'));
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdUser(): ?user
+    public function getWallUser(): ?user
     {
-        return $this->id_user;
+        return $this->wallUser;
     }
 
-    public function setIdUser(?user $id_user): self
+    public function getComUser(): ?user
     {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
-
-    public function getIdComAuthor(): ?user
-    {
-        return $this->id_com_author;
-    }
-
-    public function setIdComAuthor(?user $id_com_author): self
-    {
-        $this->id_com_author = $id_com_author;
-
-        return $this;
+        return $this->comUser;
     }
 
     public function getTitle(): ?string
@@ -83,23 +79,9 @@ class Commentaires
         return $this->title;
     }
 
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
     public function getContent(): ?string
     {
         return $this->content;
-    }
-
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
-
-        return $this;
     }
 
     public function getImage(): ?string
@@ -107,21 +89,30 @@ class Commentaires
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function getDateCrea(): ?\DateTimeInterface
+    {
+        return $this->date_crea;
+    }
+
+    public function setImage(String $image): self
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getDateCrea(): ?\DateTimeInterface
-    {
-        return $this->date_crea;
-    }
+    public function removeImage(): self{
+        if($this->image){
+            $filesystem = new Filesystem();
 
-    public function setDateCrea(\DateTimeInterface $date_crea): self
-    {
-        $this->date_crea = $date_crea;
+            try{
+                $filesystem->remove('../public/' . $this->image);
+            }catch (FileException $e){
+                throw $e;
+            }
+        }
+
+        $this->image = null;
 
         return $this;
     }

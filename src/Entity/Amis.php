@@ -13,7 +13,6 @@ use PhpParser\Node\Scalar\String_;
 class Amis
 {
     const STATUS_PENDING = 'STATUS_PENDING';
-    const STATUS_FRIEND = 'STATUS_FRIEND';
     const STATUS_BLOCKED = 'STATUS_BLOCKED';
 
     /**
@@ -32,7 +31,6 @@ class Amis
      * @ORM\Column(type="string")
      */
     private $status;
-
 
     public function __construct(User $user, User $friend, Bool $blocked = false)
     {

@@ -18,10 +18,6 @@ use function Sodium\add;
 
 class AmisController extends AbstractController
 {
-    const STATUS_PENDING = 'STATUS_PENDING';
-    const STATUS_FRIEND = 'STATUS_FRIEND';
-    const STATUS_BLOCKED = 'STATUS_BLOCKED';
-
     /**
      * @Route("/amis", name="amis")
      */
@@ -81,8 +77,11 @@ class AmisController extends AbstractController
         if($request->get('profile')){
             $id = $request->get('profile');
 
-            if($id != $user->getId() && $user->estEnRelationAvec(self::STATUS_FRIEND, $id)){
-                return $this->redirectToRoute('acceuil');
+            if($id != $user->getId() && $user->estEnRelationAvec($this->getParameter('friend_status'), $id)){
+                return $this->redirectToRoute(
+                    'accueil',
+                    ['user' => $id]
+                );
             }
 
             return $this->redirectToRoute('amis');
@@ -91,9 +90,9 @@ class AmisController extends AbstractController
         elseif($request->get('blocked')){
             $id = $request->get('blocked');
 
-            if($id != $user->getId() && !$user->estEnRelationAvec(self::STATUS_BLOCKED, $id)){
+            if($id != $user->getId() && !$user->estEnRelationAvec($this->getParameter('blocked_status'), $id)){
                 if($user->getAmiById($id)){
-                    $user->getAmiById($id)->setStatus(self::STATUS_BLOCKED);
+                    $user->getAmiById($id)->setStatus($this->getParameter('blocked_status'));
 
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($user);
@@ -116,7 +115,7 @@ class AmisController extends AbstractController
         elseif ($request->get('remove')){
             $id = $request->get('remove');
 
-            if($id != $user->getId() && $user->estEnRelationAvec(self::STATUS_FRIEND, $id)){
+            if($id != $user->getId() && $user->estEnRelationAvec($this->getParameter('friend_status'), $id)){
                 $user->removeAmi($id);
 
                 $entityManager = $this->getDoctrine()->getManager();
@@ -130,8 +129,8 @@ class AmisController extends AbstractController
         elseif ($request->get('accept')){
             $id = $request->get('accept');
 
-            if($id != $user->getId() && $user->estEnRelationAvec(self::STATUS_PENDING, $id) && !$user->aDemanderEnAmi($id)){
-                $user->getAmiById($id)->setStatus(self::STATUS_FRIEND);
+            if($id != $user->getId() && $user->estEnRelationAvec($this->getParameter('pending_status'), $id) && !$user->aDemanderEnAmi($id)){
+                $user->getAmiById($id)->setStatus($this->getParameter('friend_status'));
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
@@ -144,7 +143,7 @@ class AmisController extends AbstractController
         elseif($request->get('refuse')){
             $id = $request->get('refuse');
 
-            if($id != $user->getId() && $user->estEnRelationAvec(self::STATUS_PENDING, $id) && !$user->aDemanderEnAmi($id)){
+            if($id != $user->getId() && $user->estEnRelationAvec($this->getParameter('pending_status'), $id) && !$user->aDemanderEnAmi($id)){
                 $user->removeAmi($id);
 
                 $entityManager = $this->getDoctrine()->getManager();
@@ -158,7 +157,7 @@ class AmisController extends AbstractController
         elseif($request->get('cancel')){
             $id = $request->get('cancel');
 
-            if($id != $user->getId() && $user->estEnRelationAvec(self::STATUS_PENDING, $id) && $user->aDemanderEnAmi($id)){
+            if($id != $user->getId() && $user->estEnRelationAvec($this->getParameter('pending_status'), $id) && $user->aDemanderEnAmi($id)){
                 $user->removeAmi($id);
 
                 $entityManager = $this->getDoctrine()->getManager();

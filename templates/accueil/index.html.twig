@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facebook{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 m-b-15">
+                <div class="box--shadow p-15 rounded">
+                    <h2 class="text-center">Mes Amis</h2><hr>
+                    <section class="scrollbar-y">
+                        {% for ami in app.user.getAmis('STATUS_FRIEND') %}
+                            <a class="btn-outline btn-block d-inline-block text-left m-b-10 img-rounded" href="{{ path('accueil') }}?user={{ ami.getId() }}" style="background-color: var(--gray-lightest)">
+                                {% if ami.avatar is null %}
+                                    <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                {% else %}
+                                    <img src="{{ ami.getAvatar() }}" alt="Avatar" class="m-r-5 avatar avatar--large">
+                                {% endif %}
+                                <span class="text-large text-bold">{{ ami.getUsername() }}</span>
+                            </a>
+                        {% endfor %}
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="box--shadow p-15 rounded m-b-30">
+                    <h1 class="text-center">Commentaires</h1><hr>
+                    <form method="post">
+                        {% for commentaire in user.getCommentaires() %}
+                            <div class="btn-block d-inline-block img-rounded p-15 m-b-10" style="background-color: var(--page-background)">
+                                <row>
+                                    <div class="col-sm-12 m-b-10">
+                                        <a class="nounderline" href="{{ path('accueil') }}?user={{ commentaire.getComUser().getId() }}">
+                                            {% if commentaire.getComUser().getAvatar() is null%}
+                                                <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="avatar avatar--large">
+                                            {% else %}
+                                                <img src="{{ commentaire.getComUser().getAvatar() }}" alt="Avatar" class="avatar avatar--large">
+                                            {% endif %}
+                                            <span class="text-large text-normal text-bold">{{ commentaire.getComUser().getUsername() }}</span>
+                                        </a>
+                                        {% if commentaire.getComUser().estEnRelationAvec('STATUS_BLOCKED', app.user.getID()) %}
+                                            <p class="btn--warning" style="pointer-events: none">Bloqué</p>
+                                        {% endif %}
+                                    </div>
+                                </row>
+                                <row>
+                                    <div class="col-sm-12">
+                                        <h2>{{ commentaire.getTitle() }}</h2>
+                                        <hr><pre>{{ commentaire.getContent() }}</pre>
+                                    </div>
+                                </row>
+                                {% if commentaire.getImage() is not null %}
+                                    <row>
+                                        <div class="col-sm-12 m-b-10">
+                                            <img class="img-responsive img-rounded" src="{{ commentaire.getImage() }}">
+                                        </div>
+                                    </row>
+                                {% endif %}
+                                <row>
+                                    {% if user == app.user or commentaire.getComUser() == app.user %}
+                                        <div class="col-sm-6">
+                                            <div class="btn--remove" data-toggle="modal" data-target="#modal-remove-{{ user.getId() }}">Supprimer</div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="text-right">{{ commentaire.getDateCrea().format('d-m-Y H:i:s') }}</p>
+                                        </div>
+                                        <div class="modal" id="modal-remove-{{ user.getId() }}"
+                                             tabindex="-10" role="dialog" data-backdrop="static" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content box--white">
+                                                    <div class="modal-body text-center text-bold alert-danger">
+                                                        Êtes vous certain de vouloir supprimer ce commentaire ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn-block btn--remove" type="submit" name="remove" value="{{ commentaire.getId() }}">Supprimer le commentaire</button>
+                                                        <div class="btn-block btn--accept" data-dismiss="modal">Annuler</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-sm-12">
+                                            <p class="text-right">{{ commentaire.getDateCrea().format('d-m-Y H:i:s') }}</p>
+                                        </div>
+                                    {% endif %}
+                                </row>
+                            </div>
+                        {% endfor %}
+                    </form>
+                    <div class="btn-block d-inline-block img-rounded p-15" style="background-color: var(--page-background)">
+                        {{ form_start(commentairesForm) }}
+                        {% if form_errors(commentairesForm.title) %}
+                            <row>
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger" role="alert">{{ form_errors(commentairesForm.title) }}</div>
+                                </div>
+                            </row>
+                        {% endif %}
+                        <row>
+                            <div class="col-sm-6">
+                                {{ form_widget(commentairesForm.title, {'attr': {'class': 'mousetrap form-control', 'placeholder': 'Titre'}}) }}
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-sm-12"><hr>
+                                {% if form_errors(commentairesForm.content) %}
+                                    <div class="alert alert-danger" role="alert">{{ form_errors(commentairesForm.content) }}</div>
+                                {% endif %}
+                                <pre>{{ form_widget(commentairesForm.content, {'attr': {'class': 'mousetrap form-control', 'placeholder': 'Contenu du commentaire'}}) }}</pre>
+                            </div>
+                        </row>
+                        {% if form_errors(commentairesForm.image) %}
+                            <row>
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger" role="alert">{{ form_errors(commentairesForm.image) }}</div>
+                                </div>
+                            </row>
+                        {% endif %}
+                        <row>
+                            <div class="col-lg-6">
+                                {{ form_widget(commentairesForm.image, {'attr': {'class': 'btn btn-outline m-b-10'}}) }}
+                            </div>
+                            <div class="col-lg-6">
+                                {{ form_widget(commentairesForm.submit, {'attr': {'class': 'btn btn-outline pull-right'}}) }}
+                            </div>
+                        </row>
+                        {{ form_end(commentairesForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

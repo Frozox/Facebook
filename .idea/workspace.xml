@@ -2,16 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69dfeb9f-a2ea-430a-bbfc-c875afe7d0b5" name="Default Changelist" comment="FIX login/register css, footer on top">
-      <change afterPath="$PROJECT_DIR$/public/js/ajaxSearchBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/AmisController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/amis/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/liip_imagine.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210113084650.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210114132103.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210121144215.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icons/heart-fill.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icons/heart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ActualitesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/CommentairesType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/actualites/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/facebook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/facebook.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/dropavatar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dropavatar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/imgUpload.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/icons/imgUpload.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/ajaxSearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/ajaxSearchBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AcceuilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AccueilController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AmisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AmisController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Amis.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Amis.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Commentaires.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commentaires.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/AuthentificatorAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/AuthentificatorAuthenticator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/acceuil/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accueil/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/amis/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/amis/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +48,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -145,6 +168,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/proxy-manager-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/serializer" />
       <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/vendor/liip/imagine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/vendor/symfony/templating" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mKDOmRuRMh6LdMFh9YROOcv0ZU" />
@@ -169,11 +195,11 @@
       <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\logos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\icons" />
       <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images" />
       <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\avatar" />
       <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\images\logos" />
       <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\js" />
-      <recent name="C:\Users\BLS\PhpstormProjects\facebook\public\icon" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -198,7 +224,9 @@
       <workItem from="1611043886585" duration="10509000" />
       <workItem from="1611063912728" duration="5414000" />
       <workItem from="1611069398156" duration="6591000" />
-      <workItem from="1611130412789" duration="15433000" />
+      <workItem from="1611130412789" duration="25405000" />
+      <workItem from="1611216367096" duration="25365000" />
+      <workItem from="1611302603523" duration="18937000" />
     </task>
     <task id="LOCAL-00001" summary="ADD acceuil, login/logout, register pages">
       <created>1609237538522</created>
@@ -256,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610719645644</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ADD barre de recherche pour ajout d'amis/ toutes les fonctionnalités [Inviter, Supprimer, Bloquer, Refuser, Accepter, Consulter le profile]">
+      <created>1611150393977</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611150393977</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +318,7 @@
     <MESSAGE value="ADD profile/avatar form" />
     <MESSAGE value="ADD gestion des amis (Amis/En attente/Bloqués)" />
     <MESSAGE value="ADD mise en forme de ma page &quot;Mes Amis&quot; complètement terminé" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD mise en forme de ma page &quot;Mes Amis&quot; complètement terminé" />
+    <MESSAGE value="ADD barre de recherche pour ajout d'amis/ toutes les fonctionnalités [Inviter, Supprimer, Bloquer, Refuser, Accepter, Consulter le profile]" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD barre de recherche pour ajout d'amis/ toutes les fonctionnalités [Inviter, Supprimer, Bloquer, Refuser, Accepter, Consulter le profile]" />
   </component>
 </project>

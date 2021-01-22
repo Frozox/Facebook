@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -47,7 +49,7 @@ class User implements UserInterface
     private $avatar;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="id_user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="wallUser", orphanRemoval=true)
      */
     private $commentaires;
 
@@ -161,6 +163,16 @@ class User implements UserInterface
 
     public function removeAvatar(): self
     {
+        if($this->avatar){
+            $filesystem = new Filesystem();
+
+            try{
+                $filesystem->remove('../public/' . $this->avatar);
+            }catch (FileException $e){
+                throw $e;
+            }
+        }
+
         $this->avatar = null;
 
         return $this;
@@ -174,22 +186,27 @@ class User implements UserInterface
         return $this->commentaires;
     }
 
-    public function addCommentaire(Commentaires $commentaire): self
+    /**
+     * @return Commentaires
+     */
+    public function getCommentaireAsId(int $id): ?Commentaires
     {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires[] = $commentaire;
-            $commentaire->setIdUser($this);
+        foreach ($this->commentaires as $commentaire){
+            if($commentaire->getId() == $id)
+            {
+                return $commentaire;
+            }
         }
-
-        return $this;
+        return null;
     }
 
-    public function removeCommentaire(Commentaires $commentaire): self
+    public function removeCommentaire(int $comId): self
     {
-        if ($this->commentaires->removeElement($commentaire)) {
-            // set the owning side to null (unless already changed)
-            if ($commentaire->getIdUser() === $this) {
-                $commentaire->setIdUser(null);
+        foreach ($this->commentaires as $commentaire){
+            if($commentaire->getId() == $comId){
+                $commentaire->removeImage();
+                $this->commentaires->removeElement($commentaire);
+                break;
             }
         }
 
@@ -333,14 +350,4 @@ class User implements UserInterface
         $n2 = $this->amisAvecMoi->count();
         return $n1 + $n2;
     }
-
-    /*public function addAmi(Amis $ami): self
-    {
-        if (!$this->amis->contains($ami)) {
-            $this->amis[] = $ami;
-            $ami->setIdDemandeur($this);
-        }
-
-        return $this;
-    }*/
 }

@@ -38,36 +38,37 @@
                         <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a></li>
                         <li id="/profile" class="navbtn">
                         {% if app.user.avatar is null %}
-                            <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="avatar"><a href="/profile"> {{ app.user.username }}</a></li>
+                            <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="avatar"><a href="{{ path('compte') }}"> {{ app.user.username }}</a></li>
                         {% else %}
-                            <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"><a href="/profile"> {{ app.user.username }}</a></li>
+                            <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"><a href="{{ path('compte') }}"> {{ app.user.username }}</a></li>
                         {% endif %}
-                        <li id="/" class="navbtn"><a href="/">Mon Mur</a></li>
-                        <li id="/" class="navbtn"><a href="/">Actualités</a></li>
+                        <li id="{{ path('accueil') }}" class="navbtn"><a href="{{ path('accueil') }}">Mon Mur</a></li>
+                        <li id="{{ path('actualites') }}" class="navbtn"><a href="{{ path('actualites') }}">Actualités</a></li>
                         {% if app.user.getInviteNumber() > 0 %}
-                            <li id="/amis" class="navbtn"><a href="/amis">Mes Amis <span class="badge badge--danger">{{ app.user.getInviteNumber() }}</span></a></li>
+                            <li id="{{ path('amis') }}" class="navbtn"><a href="{{ path('amis') }}">Mes Amis <span class="badge badge--danger">{{ app.user.getInviteNumber() }}</span></a></li>
                         {% else %}
-                            <li id="/amis" class="navbtn"><a href="/amis">Mes Amis</a></li>
+                            <li id="{{ path('amis') }}" class="navbtn"><a href="{{ path('amis') }}">Mes Amis</a></li>
                         {% endif %}
-                        <li id="/logout" class="navbtn header__logout"><a href="/logout">Logout</a></li>
+                        <li id="{{ path('app_logout') }}" class="navbtn header__logout"><a href="{{ path('app_logout') }}">Logout</a></li>
                     </ul>
                     <ul class="visible-xs">
                         <li class="hidden-xs header__logo--responsive">
-                        <a loading="lazy" href="/"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a></li>
-                        <a href="/profile"><li id="profile" class="navbtn">
+                            <a loading="lazy" href="{{ path('accueil') }}"><img alt="Facebook logo" src="/images/logos/F_icon.svg"></a>
+                        </li>
+                        <a href="{{ path('compte') }}"><li id="profile" class="navbtn">
                         {% if app.user.avatar is null %}
                             <img src="/images/avatar/default_avatar.jpg" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
                         {% else %}
                             <img src="{{ app.user.avatar }}" alt="Avatar" class="avatar"> {{ app.user.username }}</li></a>
                         {% endif %}
-                        <a href="/"><li id="/" class="navbtn">Mon Mur</li></a>
-                        <a href="/"><li id="/" class="navbtn">Actualités</li></a>
+                        <a href="{{ path('accueil') }}"><li id="{{ path('accueil') }}" class="navbtn">Mon Mur</li></a>
+                        <a href="{{ path('actualites') }}"><li id="{{ path('actualites') }}" class="navbtn">Actualités</li></a>
                         {% if app.user.getInviteNumber() > 0 %}
-                            <a href="/amis"><li id="/amis" class="navbtn">Mes Amis <span class="badge badge--danger">{{ app.user.getInviteNumber() }}</span></li></a>
+                            <a href="{{ path('amis') }}"><li id="{{ path('amis') }}" class="navbtn">Mes Amis <span class="badge badge--danger">{{ app.user.getInviteNumber() }}</span></li></a>
                         {% else %}
-                            <a href="/amis"><li id="/amis" class="navbtn">Mes Amis</li></a>
+                            <a href="{{ path('amis') }}"><li id="{{ path('amis') }}" class="navbtn">Mes Amis</li></a>
                         {% endif %}
-                        <a href="/logout"><li id="/logout" class="navbtn header__logout">Logout</li></a>
+                        <a href="{{ path('app_logout') }}"><li id="{{ path('app_logout') }}" class="navbtn header__logout">Logout</li></a>
                     </ul>
                 </nav>
             </div>

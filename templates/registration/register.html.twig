@@ -11,7 +11,8 @@
                     <div class="box box--shadow">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h1 class="m-b-5">Enregistrement</h1>
+                                <h1 class="m-b-5 text-center">Enregistrement</h1>
+                                <hr>
                                 {% for flashError in app.flashes('verify_email_error') %}
                                     <div class="alert alert-danger" role="alert">{{ flashError }}</div>
                                 {% endfor %}
